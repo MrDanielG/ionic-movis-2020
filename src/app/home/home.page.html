@@ -23,11 +23,10 @@
 
       <ion-card-content>
         {{card.contentText}}
+        <ion-buttons class="ion-justify-content-end">
+          <ion-button (click)="openAlert()">Alerta</ion-button>
+        </ion-buttons>
       </ion-card-content>
-
-      <ion-buttons class="ion-justify-content-end">
-        <ion-button (click)="openAlert()">Alerta</ion-button>
-      </ion-buttons>
     </ion-card>
   </div>
 </ion-content>
