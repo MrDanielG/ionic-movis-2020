@@ -1,9 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./pages/auth/auth.module').then(m => m.AuthPageModule),
+    canActivate: [AuthenticatedGuard]
+  },
+  {
+    path: 'public',
+    loadChildren: () =>
+      import('./pages/public/public.module').then(m => m.PublicPageModule)
+  }
 ];
 
 @NgModule({
@@ -12,4 +23,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
